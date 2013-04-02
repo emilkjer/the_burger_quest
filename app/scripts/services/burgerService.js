@@ -34,22 +34,41 @@ angular.module('burgerquestApp')
         title: 'Merriwell',
         slug: 'merriwell',
         price: 21.5,
-        score: 8.8,
         rank: 2,
-        user: 'Jesse'
+        user: 'Jesse',
+        scores: [
+          {
+            user: 'mark',
+            burger: 9,
+            venue: 9,
+            comments: 'huge'
+          }
+        ]
       },
       {
         title: 'Cheapo',
         slug: 'cheapo',
-        price: 8.5,
-        score: 7,
+        price: 8.50,
         rank: 3,
-        user: 'mark'
+        user: 'mark',
+        scores: [
+          {
+            user: 'emil',
+            burger: 7,
+            venue: 6,
+            comments: 'cheap and cheerful'
+          },
+          {
+            user: 'mark',
+            burger: 6.5,
+            venue: 5,
+            comments: 'not bad...'
+          }
+        ]
       },
       {
         title: 'NSHRY Umami',
         slug: 'nshry-umami',
-        score: 9.7,
         rank: 1,
         user: 'Jesse',
         joint: 'NSHRY',
@@ -66,8 +85,22 @@ angular.module('burgerquestApp')
         ],
         scores: [
           {
-            user: 'Mark',
-            score: 9.4
+            user: 'mark',
+            burger: 9.5,
+            venue: 9,
+            comments: 'lawd rekus'
+          },
+          {
+            user: 'Jesse',
+            burger: 9,
+            venue: 8.5,
+            comments: 'delicious'
+          },
+          {
+            user: 'emil',
+            burger: 8.0,
+            venue: 7,
+            comments: 'mmm burger'
           }
         ]
       }
@@ -115,6 +148,16 @@ angular.module('burgerquestApp')
         });
       },
 
+      getVotedBurgers: function(username){
+        return _(burgers).filter(function(burger){
+          if(!burger.scores || !burger.scores.length) return false;
+          var userscore = _(burger.scores).find(function(score){
+            return score.user === username;
+          });
+          return userscore;
+        });
+      },
+
       getBurgerMaster: function(){
         return _(users).max(function(user){
           return user.cred;
@@ -128,6 +171,22 @@ angular.module('burgerquestApp')
 
       // link burger.user to a user
       burger.user = api.getUserByName(burger.user);
+
+      // calculate scores
+      if(!burger.scores) burger.scores = [];
+      var total = 0;
+      _(burger.scores).each(function(score){
+        // consolidated score. double the burger rating and add the venue, then average
+        var consolidated = ((score.burger*2) + score.venue)/2;
+
+        // value. consolidated divided by price/2. multiply and fix to 3dp for readability.
+        var value = ((consolidated/(burger.price/2))*10).toFixed(3);
+        score.value = value;
+        score.score = (consolidated * value).toFixed(3);
+        total += Number(score.score);
+      });
+
+      burger.score = (total/burger.scores.length).toFixed(3);
 
       // calculate .value
       burger.value = (burger.score / burger.price).toFixed(3)*10;

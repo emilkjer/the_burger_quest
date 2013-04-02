@@ -2,50 +2,74 @@
     <img ng-show="burger.images.length" ng-src="/media/{{ burger.images[0].url }}">
     <figcaption>
         <h1 class="figure-title">{{ burger.title }}</h1>
-        <p class="figure-lead lead">Ranked #{{ burger.rank }} with <span class="hidden-phone">a BurgerScore of</span> {{ burger.score }}</p>
+        <p class="figure-lead lead text-info">Ranked #{{ burger.rank }} with <span class="hidden-phone">a BurgerScore of</span> {{ burger.score }}.</p>
+        <p>Average taste rating of 8.6</p>
+        <p>{{ burger.price | currency }} @ <a ng-href="/#/joints/{{ burger.joint }}">{{ burger.joint }}</a></p>
 </figure>
 
-<div class="hero-unit">
-    <p><a ng-href="/#/joints/{{ burger.joint }}">{{ burger.joint }}</a></p>
-    <p>{{ burger.price | currency }}</p>
 
-</div>
+
+
 
 <h2>Scores</h2>
-<table class="table table-bordered table-striped table-hover">
+
+<table class="table table-bordered table-striped table-hover" ng-init="orderby='score';reverse=true;">
     <thead>
-        <tr>
-            <th>User</th>
-            <th>BurgerScore</th>
+        <tr ng-click="reverse=!reverse;">
+            <th ng-click="orderby='user'">User</th>
+            <th ng-click="orderby='score'">BurgerScore</th>
+            <th ng-click="orderby='burger'">Burger</th>
+            <th ng-click="orderby='venue'">Venue</th>
+            <th ng-click="orderby='value'">Value</th>
+            <th ng-click="orderby='comments'">Comments</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="score in burger.scores">
-            <td>{{ score.user }}</td>
+        <tr ng-repeat="score in burger.scores | orderBy:orderby:reverse">
+            <td><a href="/#/users/{{ score.user.slug }}/">{{ score.user }}</a></td>
             <td>{{ score.score }}</td>
+            <td>{{ score.burger }}</td>
+            <td>{{ score.venue }}</td>
+            <td>{{ score.value }}</td>
+            <td>{{ score.comments }}</td>
         </tr>
     </tbody>
 </table>
 
 <div class="well well-large">
-    <form class="form-horizontal">
+    <form class="form-horizontal" name="scoreForm" ng-submit="addScore(burger.slug, score)">
         <fieldset>
             <legend>Rate this burger</legend>
 
             <div class="control-group">
-                <label class="control-label">Score<p><small>Rate it out of 10</small></p></label>
-                <div class="controls"><input type="number" data-model="rate.score" placeholder="score" min="0" max="10" step="0.5"></div>
+                <label class="control-label">User</label>
+                <div class="controls">
+                    <input class="input-small" type="text" ng-model="score.user">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Score</label>
+                <div class="controls">
+                    <input class="input-small" type="number" ng-model="score.burger" min="0" max="10" step="0.5">
+                    <span class="help-inline"><small>Rate the burger. Taste, presentation, fries, etc.</small></span>
+                </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Value<p><small>Bang for buck?</small></p></label>
-                <div class="controls"><input type="number" data-model="rate.value" min="0" max="10" step="0.5"></div>
+                <label class="control-label">Venue</label>
+                <div class="controls">
+                    <input class="input-small" type="number" ng-model="score.venue" min="0" max="10" step="0.5">
+                    <span class="help-inline"><small>How was the venue? Service, atmosphere, waiting time.</small></span>
+                </div>
             </div>
-        <input type="number" data-model="rate.value" placeholder="value" min="0" max="10" step="0.5" tooltip="test it">
-        <input type="number" data-model="rate.joint" placeholder="joint" min="0" max="10" step="0.5" popover="lol2" ng-blur="popover">
-        <textarea data-model="rate.comment" placeholder="comments?">
+            <div class="control-group">
+                <label class="control-label">Comments</label>
+                <div class="controls"><textarea placeholder="Got anything to add?" class="input-xlarge" ng-model="score.comments" rows="4"></textarea></div>
+            </div>
 
-        </textarea>
-        <input popover="lol" type="submit" class="btn" ng-hover="popover">
-        </fieldset>
+            <div class="control-group">
+                <div class="controls"><input type="submit" class="btn btn-primary" value="Do it."></div>
+            </div>
+
     </form>
 </div>

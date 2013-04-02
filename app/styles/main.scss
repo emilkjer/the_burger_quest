@@ -12,37 +12,86 @@
     border: 1px solid grey;
     padding: 0;
     margin: 0;
-    background: black;
     overflow: hidden;
+    max-height: 360px;
 
-    img {
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto;
+    figcaption, img {
+        width: 50%;
     }
 
-    .figure-title, .figure-lead {
-        position: absolute;
+    figcaption {
         @include borderbox;
-        width: 100%;
-        margin: 0;
-    }
-
-    .figure-title {
+        position: absolute;
         top: 0;
         left: 0;
-        color: white;
-        text-shadow: 0 0 1px black;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 18px;
+        background: white;
+        height: 100%;
+        border-right: 2px solid #aaa;
+        padding: 20px;
     }
 
-    .figure-lead {
-        bottom: 0;
-        left: 0;
-        color: black;
-        text-shadow: 0 0 1px white;
-        background: rgba(255, 255, 255, 0.6);
-        padding: 8px 18px;
+    img {
+        height: auto;
+        position: relative;
+        left: 50%;
+    }
+
+}
+
+
+.compact-list {
+
+    li {
+        border: 1px solid #ccc;
+        background: #eaeaea;
+        border-radius: 4px;
+        padding: 6px;
+
+        &:nth-child(even) {
+            background: #fafafa;
+        }
+    }
+
+    figure {
+        width: 130px;
+        height: 130px;
+        overflow: hidden;
+        background: white;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+
     }
 }
+
+.compact-list.very-compact {
+
+    h3 {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .lead {
+        font-size: 15px;
+        line-height: 20px;
+        margin: 0 0 4px;
+    }
+
+    li {
+        padding: 4px;
+    }
+
+    figure {
+        width: 80px;
+        height: 80px;
+    }
+
+    .media {
+        margin-top: 10px;
+    }
+}
+
+#user-search {
+    float: right;
+}
+

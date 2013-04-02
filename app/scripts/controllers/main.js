@@ -7,4 +7,6 @@ angular.module('burgerquestApp')
     $scope.burgerMaster = burgerService.getBurgerMaster();
     $scope.users = burgerService.getUsers();
 
+    console.log($scope.burgerMaster);
+
   });

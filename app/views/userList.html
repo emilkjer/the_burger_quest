@@ -1,18 +1,21 @@
-<h4>Users</h4>
+<form class="form-search" id="user-search">
+    <input class="input-medium search-query" type="text" placeholder="username" ng-model="filter"/>
+    <button type="submit" class="btn">search</button>
+</form>
 
-<table class="table table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Rank</th>
-            <th>User</th>
-            <th>BurgerCred&reg;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="user in users | orderBy:'cred':true">
-            <td>{{ user.rank }}</td>
-            <td><a ng-href="/#/users/{{ user.slug }}/">{{ user.name }}</a></td>
-            <td>{{ user.cred }}</td>
-        </tr>
-    </tbody>
-</table>
+<h2>Users</h2>
+
+<ul class="media-list compact-list">
+    <li class="media" ng-repeat="user in users | filter:filter | orderBy:'cred':true ">
+        <a class="pull-left" ng-href="/#/users/{{ user.slug }}/">
+            <figure>
+                <img ng-src="/media/{{ user.thumb }}" />
+            </figure>
+        </a>
+        <div class="media-body">
+            <h3 class="media-heading"><a ng-href="/#/users/{{ user.slug }}/">{{ user.name }}</a></h3>
+            <p class="lead text-success">Ranked #{{ user.rank }} with a BurgerCred of {{ user.cred }}</p>
+            <p>Has rated x burgers, with an average score of 8.3</p>
+        </div>
+    </li>
+</ul>
