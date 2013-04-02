@@ -1,0 +1,22 @@
+<h4>Burgers</h4>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th ng-click="order='score'">BurgerScore&reg; <a ng-click="reverse=!reverse">^</a></th>
+            <th ng-click="order='title'">Burger <a ng-click="reverse=!reverse">^</a></th>
+            <th ng-click="order='price'">Price <a ng-click="reverse=!reverse">^</a></th>
+            <th ng-click="order='value'">Value <a ng-click="reverse=!reverse">^</a></th>
+            <th ng-click="order='user.slug'">Recommended by <a ng-click="reverse=!reverse">^</a></th>
+        </tr>
+    </thead>
+    <tbody ng-init="order='score';reverse=true">
+        <tr ng-repeat="burger in burgers | orderBy:order:reverse" ng-click="burger.title">
+            <td>{{ burger.score }}</td>
+            <td><a ng-href="/#/burgers/{{ burger.slug }}">{{ burger.title }}</a></td>
+            <td>{{ burger.price | currency }}</td>
+            <td>{{ burger.value }}</td>
+            <td><a ng-href="/#/users/{{ burger.user.slug }}">{{ burger.user.name }}</a></td>
+        </tr>
+    </tbody>
+</table>

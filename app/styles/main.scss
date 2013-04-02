@@ -1,0 +1,48 @@
+@import "compass_twitter_bootstrap";
+@import "compass_twitter_bootstrap_responsive";
+
+
+@mixin borderbox {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.burger-figure, .user-figure {
+    position: relative;
+    border: 1px solid grey;
+    padding: 0;
+    margin: 0;
+    background: black;
+    overflow: hidden;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .figure-title, .figure-lead {
+        position: absolute;
+        @include borderbox;
+        width: 100%;
+        margin: 0;
+    }
+
+    .figure-title {
+        top: 0;
+        left: 0;
+        color: white;
+        text-shadow: 0 0 1px black;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 18px;
+    }
+
+    .figure-lead {
+        bottom: 0;
+        left: 0;
+        color: black;
+        text-shadow: 0 0 1px white;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 8px 18px;
+    }
+}

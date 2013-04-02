@@ -1,0 +1,18 @@
+<h4>Users</h4>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>User</th>
+            <th>BurgerCred&reg;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in users | orderBy:'cred':true">
+            <td>{{ user.rank }}</td>
+            <td><a ng-href="/#/users/{{ user.slug }}/">{{ user.name }}</a></td>
+            <td>{{ user.cred }}</td>
+        </tr>
+    </tbody>
+</table>

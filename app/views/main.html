@@ -1,0 +1,13 @@
+<h3>Current Burger Champion</h3>
+<figure class="burger-figure">
+    <img ng-show="bestBurger.images.length" ng-src="/media/{{ bestBurger.images[0].url }}">
+    <h1 class="figure-title">{{ bestBurger.title }}</h1>
+    <p class="figure-lead lead">BurgerScore&reg; {{ bestBurger.score }}</p>
+</figure>
+
+<h3>Current BurgerMaster</h3>
+<figure class="user-figure">
+    <img ng-show="/media/{{ burgerMaster.images[0].url }}">
+    <h1 class="figure-title">{{ burgerMaster.name }}</h1>
+    <p class="figure-lead lead">BurgerCred {{ burgerMaster.cred }}</p>
+</figure>

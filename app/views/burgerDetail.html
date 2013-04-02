@@ -1,0 +1,51 @@
+<figure class="burger-figure">
+    <img ng-show="burger.images.length" ng-src="/media/{{ burger.images[0].url }}">
+    <figcaption>
+        <h1 class="figure-title">{{ burger.title }}</h1>
+        <p class="figure-lead lead">Ranked #{{ burger.rank }} with <span class="hidden-phone">a BurgerScore of</span> {{ burger.score }}</p>
+</figure>
+
+<div class="hero-unit">
+    <p><a ng-href="/#/joints/{{ burger.joint }}">{{ burger.joint }}</a></p>
+    <p>{{ burger.price | currency }}</p>
+
+</div>
+
+<h2>Scores</h2>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>BurgerScore</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="score in burger.scores">
+            <td>{{ score.user }}</td>
+            <td>{{ score.score }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="well well-large">
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Rate this burger</legend>
+
+            <div class="control-group">
+                <label class="control-label">Score<p><small>Rate it out of 10</small></p></label>
+                <div class="controls"><input type="number" data-model="rate.score" placeholder="score" min="0" max="10" step="0.5"></div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Value<p><small>Bang for buck?</small></p></label>
+                <div class="controls"><input type="number" data-model="rate.value" min="0" max="10" step="0.5"></div>
+            </div>
+        <input type="number" data-model="rate.value" placeholder="value" min="0" max="10" step="0.5" tooltip="test it">
+        <input type="number" data-model="rate.joint" placeholder="joint" min="0" max="10" step="0.5" popover="lol2" ng-blur="popover">
+        <textarea data-model="rate.comment" placeholder="comments?">
+
+        </textarea>
+        <input popover="lol" type="submit" class="btn" ng-hover="popover">
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+<figure class="user-figure" ng-show="user.thumb">
+    <img ng-src="/media/{{ user.thumb }}">
+    <h2 class="figure-title">{{ user.name }}</h2>
+    <div class="figure-lead">Ranked <b>#{{ user.rank}}</b> with <b>{{ user.cred }}</b> BurgerCred.</div>
+</figure>
+
+<section>
+    <h3>Recommended by {{ user.name }}</h3>
+    <div ng-include src="'/views/burgerListPartial.html'" onload="burgers=recommendations">
+    </div>
+</section>
+
+<section>
+    <h3>{{ user.name }}'s top-rated burgers</h3>
+    <!-- <div ng-include src="'/views/burgerListPartial.html'" onload="this.burgers=voted"> -->
+</section>
