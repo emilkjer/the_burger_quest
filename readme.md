@@ -2,7 +2,7 @@
 
 ## Work-in-progress notes
 
-* Mark scaffolded the project with yeoman (http://yeoman.io). You shouldn't need to install yeoman to get started, but you `should` use grunt (http://gruntjs.com).  See my notes below...
+* Mark scaffolded the project with yeoman (http://yeoman.io). You shouldn't need to install yeoman to get started, but you _should_ use grunt (http://gruntjs.com).  See my notes below...
 * Have added dummy JSON in burgerService.js, currently there's no persistence or backend.
 
 
@@ -24,7 +24,7 @@
 
 ## BurgerCred & BurgerScore calculation
 
-* Scoring a burger should be broken into parts:  `marked with a (?) are a maybe`
+* Scoring a burger should be broken into parts:  _marked with a (?) are a maybe_
     * Burger - the actual burger itself
     * Extras (?) - fries, sauces, etc
     * Venue - atmosphere, service, cooking time
