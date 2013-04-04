@@ -37,11 +37,16 @@
 
 
 
-### Getting started with Grunt
+### Getting started with the Yeoman workflow
+see http://gruntjs.com/getting-started
 
-* http://gruntjs.com/getting-started
-* You need node and npm installed
-* Install grunt-cli globally, `npm install -g grunt-cli`
-* in the project directory, run `npm install`, which installs the project dependencies
-* run grunt with `grunt`
-* run a test server with `grunt server`
+Step by step: 
+
+* First you need Node and NPM installed. 
+* Clone the repo. 
+* Install Yeomani, Grunt Command Line Tools & Bower with `npm -g install yo grunt-cli bower`
+* In the project root run `npm install` to install all our NPM dependencies.
+    * These are just dev environment deps, the backend probably won't even use node
+* Now run `bower install` to install all clientside libraries.
+* You can run a test server with auto-reload and sass compilation etc by using `grunt server`
+* For more grunt workflow commands hit `grunt`
