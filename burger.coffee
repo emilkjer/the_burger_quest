@@ -21,7 +21,7 @@ points = {}
 award_points = (msg, username, pts) ->
     points[username] ?= 0
     points[username] += parseInt(pts)
-    msg.send pts + ' Awarded To ' + username
+    msg.send pts + ' Points Awarded To ' + username
 
 save = (robot) ->
     robot.brain.data.points = points
